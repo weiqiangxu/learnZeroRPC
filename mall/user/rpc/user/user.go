@@ -16,6 +16,7 @@ type (
 	IdRequest    = user.IdRequest
 	UserResponse = user.UserResponse
 
+	// 定义一个接口 - 需要实现GetUser的function
 	User interface {
 		GetUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*UserResponse, error)
 	}
@@ -31,6 +32,7 @@ func NewUser(cli zrpc.Client) User {
 	}
 }
 
+// RPC入口 - 具体实现
 func (m *defaultUser) GetUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*UserResponse, error) {
 	client := user.NewUserClient(m.cli.Conn())
 	return client.GetUser(ctx, in, opts...)

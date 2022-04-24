@@ -9,6 +9,7 @@ import (
 	"github.com/zeromicro/go-zero/rest"
 )
 
+// RegisterHandlers 注册路由
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{

@@ -17,6 +17,7 @@ type GetOrderLogic struct {
     svcCtx *svc.ServiceContext
 }
 
+// NewGetOrderLogic 获取Order的logic层对象
 func NewGetOrderLogic(ctx context.Context, svcCtx *svc.ServiceContext) GetOrderLogic {
     return GetOrderLogic{
         Logger: logx.WithContext(ctx),
@@ -25,7 +26,9 @@ func NewGetOrderLogic(ctx context.Context, svcCtx *svc.ServiceContext) GetOrderL
     }
 }
 
+// GetOrder 获取订单信息
 func (l *GetOrderLogic) GetOrder(req *types.OrderReq) (*types.OrderReply, error) {
+    // logic层调用RPC接口获取用户信息
     user, err := l.svcCtx.UserRpc.GetUser(l.ctx, &user.IdRequest{
         Id: "1",
     })
